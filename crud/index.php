@@ -1,3 +1,8 @@
+<?php
+    include 'config.php';
+    $query = mysqli_query($koneksi, "SELECT * FROM tbl_mahasiswa");
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -22,16 +27,23 @@
                     <th scope="col">#</th>
                     <th scope="col">First</th>
                     <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                    <!-- <th scope="col">Handle</th> -->
                 </tr>
             </thead>
             <tbody>
+                <?php
+                $no = 1;
+                while($data = mysqli_fetch_array($query)){
+                ?>
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                    <th scope="row"><?=$no++ ?></th>
+                    <td><?=$data['nama_mhs'] ?></td>
+                    <td><?=$data['alamat'] ?></td>
+                    <!-- <td>@mdo</td> -->
                 </tr>
+                <?php
+                }
+                ?>
             </tbody>
         </table>
     </div>
